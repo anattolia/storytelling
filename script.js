@@ -131,7 +131,7 @@
             projection: config.projection
         });
 
-        // Create a inset map if enabled in config.js
+        // Crea un minimapa si la opción está habilitada en config.js
         if (config.inset) {
             map.addControl(
                 new GlobeMinimap({ ...config.insetOptions }),

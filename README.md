@@ -75,48 +75,48 @@ Abre `config.js` y edita lo siguiente para personalizar el mapa de tu historia.
 ```
 {
     style: 'mapbox://styles/mapbox/streets-v11',
-    accessToken: 'YOUR_MAPBOX_ACCESS_TOKEN',
-    showMarkers: true,
+    tokenDeAcceso: 'YOUR_MAPBOX_ACCESS_TOKEN',
+    mostrarMarcadores: true,
     markerColor: '#3FB1CE',
-    theme: 'light',
-    use3dTerrain: false,
-    title: 'The Title Text of this Story',
-    subtitle: 'A descriptive and interesting subtitle to draw in the reader',
-    byline: 'By a Digital Storyteller',
+    tema: 'light',
+    usarTerreno3d: false,
+    titulo: 'The Title Text of this Story',
+    subtitulo: 'A descriptive and interesting subtitle to draw in the reader',
+    autor: 'By a Digital Storyteller',
     footer: 'Source: source citations, etc.',
-    chapters: [
+    capitulos: [
     ...
     ]
 {
 ```
 
-6. **Agrega tantos capítulos (`chapters`) en tu plantilla como necesites.** Vas a necesitar una `,` entre cada sección, pero no una coma al final. Así se ve un `capítulo`:
+6. **Agrega tantos `capitulos` en tu plantilla como necesites.** Vas a necesitar una `,` entre cada sección, pero no una coma al final. Así se ve un `capítulo`:
 
 ```
 {
     id: 'slug-style-id',
-    alignment: 'left',
-    hidden: false,
-    title: 'Display Title',
-    image: './path/to/image/source.png',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    location: {
+    alineacion: 'left',
+    oculto: false,
+    titulo: 'Display Title',
+    imagen: './path/to/image/source.png',
+    descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    ubicacion: {
         center: [-122.418398, 37.759483],
         zoom: 8.5,
-        pitch: 60,
+        inclinacion: 60,
         bearing: 0
     },
-    mapAnimation: 'flyTo',
-    rotateAnimation: false,
+    animacionMapa: 'flyTo',
+    rotarAnimacion: false,
     callback: '',
     onChapterEnter: [],
     onChapterExit: []
 },
 ```
 
-7. **Llena las secciones según lo que necesites.**  Da un nombre único a cada sección con la propiedad `id`. Este se convertirá en el `div` `id` HTML, así que evita espacios en el nombre. Las propiedades `title` y `description` son opcionales. `description` admite etiquetas HTML. Si tienes una imagen que corresponde a esa sección de la historia, agrega la ruta a la imagen en `image`.
+7. **Llena las secciones según lo que necesites.**  Da un nombre único a cada sección con la propiedad `id`. Este se convertirá en el `div` `id` HTML, así que evita espacios en el nombre. Las propiedades `titulo` y `descripcion` son opcionales. `descripcion` admite etiquetas HTML. Si tienes una imagen que corresponde a esa sección de la historia, agrega la ruta a la imagen en `imagen`.
 
-8. Para la `ubicación`, puedes usar el archivo `helper.html` para determinar la posición del mapa. Esta herramienta imprime la configuración de ubicación del mapa en pantalla en un formato listo para copiar y pegar en la plantilla. Opcionalmente, puedes cambiar el estilo de este archivo a su [estilo personalizado](https://docs.mapbox.com/mapbox-gl-js/example/custom-style-id/).  También puedes buscar las coordenadas en GoogleMaps u otra página de mapas.
+8. Determina la `ubicación` del mapa. Opcionalmente, puedes cambiar el estilo de este archivo a tu [estilo personalizado](https://docs.mapbox.com/mapbox-gl-js/example/custom-style-id/).
 
 9. Repite hasta que hayas puesto las coordenadas de cada una de tus secciones.
 
@@ -126,7 +126,7 @@ Abre `config.js` y edita lo siguiente para personalizar el mapa de tu historia.
 
 #### Generar posición del mapa 
 
-Usa la herramienta [Mapbox Location Helper](https://labs.mapbox.com/location-helper/) para buscar los lugares en el mapa y ubicar las coordenadas de su centro.
+Usa la herramienta [Mapbox Location Helper](https://labs.mapbox.com/location-helper/), [Google Maps](https://www.google.com/maps) (haciendo click derecho sobre el lugar que quieras elegir), u otra herramienta para buscar los lugares en el mapa y ubicar las coordenadas de su centro.
 
 ![location helper screen capture](assets/location-helper.gif)
 
@@ -137,25 +137,25 @@ Aquí hay un ejemplo de un archivo de configuración simple:
 ```
 var config = {
     style: 'mapbox://styles/branigan/cjz37rcb003ib1cr3s8rnkt2d',
-    accessToken: 'pk.eyJ1IjoibWJ4c29sdXRpb25zIiwiYSI6ImNrMm01aG9hdTBlZGwzbXQ1ZXVrNHNmejAifQ.QHQA0N6XPWddCXtvoODHZg',
-    showMarkers: false,
-    theme: 'dark',
-    use3dTerrain: true,
-    title: 'Glaciers of Glacier National Park',
-    subtitle: 'Change in coverage from 1998 to 2015',
-    byline: '',
-    footer: 'Source: Story text from Wikipedia, August 2019. Data from <a href="https://www.usgs.gov/centers/norock/science/retreat-glaciers-glacier-national-park">USGS</a>',
-    chapters: [
+    tokenDeAcceso: 'pk.eyJ1IjoibWJ4c29sdXRpb25zIiwiYSI6ImNrMm01aG9hdTBlZGwzbXQ1ZXVrNHNmejAifQ.QHQA0N6XPWddCXtvoODHZg',
+    mostrarMarcadores: false,
+    tema: 'dark',
+    usarTerreno3d: true,
+    titulo: 'Glaciares del Parque Nacional Glaciar',
+    subtitulo: 'Change in coverage from 1998 to 2015',
+    autor: '',
+    footer: 'Fuente: Texto de la historia de Wikipedia, Agosto 2019. Datos de: <a href="https://www.usgs.gov/centers/norock/science/retreat-glaciers-glacier-national-park">USGS</a>',
+    capitulos: [
         {
             id: 'glacier-np',
-            alignment: 'full',
-            title: 'Glacier National Park Glaciers',
-            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/2015-06-19_Glacier_National_Park_%28U.S.%29_8633.jpg/800px-2015-06-19_Glacier_National_Park_%28U.S.%29_8633.jpg',
-            description: 'Glacier National Park is dominated by mountains which were carved into their present shapes by the huge glaciers of the last ice age...',
-            location: {
+            alineacion: 'full',
+            titulo: 'Glaciares del Parque Nacional Glaciar',
+            imagen: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/2015-06-19_Glacier_National_Park_%28U.S.%29_8633.jpg/800px-2015-06-19_Glacier_National_Park_%28U.S.%29_8633.jpg',
+            descripcion: 'El Parque Nacional Glaciar está dominado por montañas que fueron talladas en sus formas actuales por los enormes glaciares de la última edad de hielo...',
+            ubicacion: {
                 center: [-113.91666, 48.66451],
                 zoom: 8,
-                pitch: 0.00,
+                inclinacion: 0.00,
                 bearing: 0.00
             },
             onChapterEnter: [
@@ -177,14 +177,14 @@ var config = {
         },
         {
             id: 'harrison1998',
-            alignment: 'left',
-            title: 'Harrison Glacier, 1998',
-            image: '',
-            description: 'Harrison Glacier is located in the US state of Montana in Glacier National Park. Situated on a southeast facing ridge immediately south of Mount Jackson, Harrison Glacier is the largest glacier in Glacier National Park...',
-            location: {
+            alineacion: 'left',
+            titulo: 'Glaciar Harrison, 1998',
+            imagen: '',
+            descripcion: 'El glaciar Harrison se encuentra en el estado estadounidense de Montana, en el Parque Nacional de los Glaciares. Situado en una cresta orientada al sureste, justo al sur del Monte Jackson, es el glaciar más grande del Parque Nacional de los Glaciares.',
+            ubicacion: {
                 center: [-113.72917, 48.58938],
                 zoom: 12.92,
-                pitch: 39.50,
+                inclinacion: 39.50,
                 bearing: 36.00
             },
             onChapterEnter: [],
@@ -203,21 +203,21 @@ var config = {
 | Opción                   | Tipo   | Descripción                                                                                                                                                                                                        |
 | ------------------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `style` (Requerido)       | String | Esta es la `url` del estilo de Mapbox que se usará en la aplicación. Puede ser un estilo estándar o uno personalizado de tu cuenta de Mapbox. Usa un estilo personalizado si quieres incluir datos o capas personalizados.                        |
-| `accessToken` (Requerido) | String | Tu token de acceso de Mapbox.                                                                                                                                                           |
-| `showMarkers`            | String | Controla si se muestran marcadores en el punto central de cada capítulo. Si es "true", el mapa mostrará un icono azul predeterminado en forma de lágrima invertida.                    |
+| `tokenDeAcceso` (Requerido) | String | Tu token de acceso de Mapbox.                                                                                                                                                           |
+| `mostrarMarcadores`            | String | Controla si se muestran marcadores en el punto central de cada capítulo. Si es "true", el mapa mostrará un icono azul predeterminado en forma de lágrima invertida.                    |
 | `markerColor`            | String | Acepta hexadecimal, RGB, y nombres de colores [compatible con CSS estándar](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value). Sobreescribe el azul claro por defecto si el marcador de color  `showMarkers` es `true`. |
-| `theme`                  | String | Hay dos temas básicos disponibles (claro y oscuro).                                                                                                                                                                   |
-| `use3dTerrain`           | String | Habilita el terreno 3D.(Opcional)                                                                                                                                                                                     |
+| `tema`                  | String | Hay dos temas básicos disponibles (claro y oscuro).                                                                                                                                                                   |
+| `usarTerreno3d`           | String | Habilita el terreno 3D.(Opcional)                                                                                                                                                                                     |
 | `inset`                  | String | Habilita un minimapa del globo.(Opcional)                                                                                                                                                                                |
 | `insetOptions`           | Objeto | [opciones del `GlobeMiniMap`](https://github.com/chriswhong/mapbox-gl-globe-minimap?tab=readme-ov-file#options)                                                                                                        |
 | `insetPosition`          | String |Una cadena que representa la posición del mapa insertado en el mapa. Las opciones válidas son: `top-left`, `top-right`, `bottom-left`, `bottom-right`.                                                                                                      |
 | `projection`             | String | Configura el [parámetro proyección](https://docs.mapbox.com/mapbox-gl-js/example/projections/) del objeto Mapa para crear un mapa con una proyección que no sea Mercator.(Opcional)                                                 |
 | `auto`                   | String | Permite el avance automático a través de los capítulos. (Opcional)                                                                                                                                                     |
-| `title`                  | String | El título general de la historia.(Opcional)                                                                                                                                                                         |
-| `subtitle`               | String | Un subtítulo para la historia. (Opcional)                                                                                                                                                                               |
-| `byline`                 | String | Créditos del(a) autor(a) de la historia. (Opcional)                                                                                                                                                                         |
+| `titulo`                  | String | El título general de la historia.(Opcional)                                                                                                                                                                         |
+| `subtitulo`               | String | Un subtítulo para la historia. (Opcional)                                                                                                                                                                               |
+| `autor`                 | String | Créditos del(a) autor(a) de la historia. (Opcional)                                                                                                                                                                         |
 | `footer`                 | String | Citas, créditos, etc., se muestran al final de la historia en la parte inferior.                                                                                                                                               |
-| `chapters` (Requerido)    | String | Contiene todos los contenidos de la historia y los controles del mapa para cada sección. _Array de objectos_                                                                                                               |
+| `capitulos` (Requerido)    | String | Contiene todos los contenidos de la historia y los controles del mapa para cada sección. _Array de objectos_                                                                                                               |
 
 ---
 
@@ -226,14 +226,14 @@ var config = {
 | Opción                 | Tipo   | Descripción                                                                                                                                                                               |
 | ---------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id` (Requerido)        | String | Un ID de estilo slug para el capítulo. Lo usa el JavaScript de la aplicación y se asigna como un `id` HTML para el `div` que contiene la historia. Práctica recomendada: usar kebab-case, por ejemplo, `mi-historia-capítulo-1`. |
-| `alignment` (Requerido) | String | Define dónde debe aparecer el texto de la historia en el mapa. Opciones: `center`, `left`, `right`, `full`. El valor predeterminado es `center` para ventanas de navegador de menos de 750 píxeles de ancho.               |
-| `hidden`               | String | Establece la visibilidad del capítulo como oculta (`hidden`) cuando es verdadera (`true`). El capítulo seguirá activando una transición de mapa y capa.                   |
-| `title`                | String | Título de la sección, mostrado en un elemento de tipo`h3`.                                                                                                                                       |
-| `image`                | String | URL de la imagen a mostrarse en esta sección.                                                                                                                                              |
-| `description`          | String | Contenido principal de la sección. Coincide con lo que el lector ve en el mapa. Compatible con HTML para imágenes, enlaces, etc.                                                                   |
-| `location` (Requerido)  | String | Detalles sobre la visualización del mapa y la vista de la cámara (por ejemplo, centro, zoom, inclinación, rumbo).                                                                                                   |
-| `mapAnimation`         | String | Define el [tipo de animación](https://docs.mapbox.com/mapbox-gl-js/api/#map#jumpto) para las transiciones. Opciones: `flyTo`, `easeTo`, `jumpTo`. Por defecto es `flyTo`.                            |
-| `rotateAnimation`      | String | Inicia una animación de rotación lenta al final de la transición del mapa cuando es `true`. Gira 90 grados durante 24 segundos.                                                                  |
+| `alineacion` (Requerido) | String | Define dónde debe aparecer el texto de la historia en el mapa. Opciones: `center`, `left`, `right`, `full`. El valor predeterminado es `center` para ventanas de navegador de menos de 750 píxeles de ancho.               |
+| `oculto`               | String | Establece la visibilidad del capítulo como oculta (`hidden`) cuando es verdadera (`true`). El capítulo seguirá activando una transición de mapa y capa.                   |
+| `titulo`                | String | Título de la sección, mostrado en un elemento de tipo`h3`.                                                                                                                                       |
+| `imagen`                | String | URL de la imagen a mostrarse en esta sección.                                                                                                                                              |
+| `descripcion`          | String | Contenido principal de la sección. Coincide con lo que el lector ve en el mapa. Compatible con HTML para imágenes, enlaces, etc.                                                                   |
+| `ubicacion` (Requerido)  | String | Detalles sobre la visualización del mapa y la vista de la cámara (por ejemplo, centro, zoom, inclinación, rumbo).                                                                                                   |
+| `animacionMapa`         | String | Define el [tipo de animación](https://docs.mapbox.com/mapbox-gl-js/api/#map#jumpto) para las transiciones. Opciones: `flyTo`, `easeTo`, `jumpTo`. Por defecto es `flyTo`.                            |
+| `rotarAnimacion`      | String | Inicia una animación de rotación lenta al final de la transición del mapa cuando es `true`. Gira 90 grados durante 24 segundos.                                                                  |
 | `callback`             | String |Nombre de una función de JavaScript para ejecutar código personalizado para el capítulo, por ejemplo, activar o desactivar una leyenda, agregar datos de API o mostrar un gráfico interactivo.                                 |
 | `onChapterEnter`       | String | Capas que se mostrarán/ocultarán/silenciarán cuando la sección se active. _Array de objectos_ (ej., nombre de la capa, opacidad, duración).                                                            |
 | `onChapterExit`        | String | Igual que `onChapterEnter`, Se activa cuando la sección se vuelve inactiva. _Array de objectos_.                                                                                                |
@@ -246,7 +246,7 @@ var config = {
 | ------------------- | ------ | ----------------------------------------------------------------------------------------------------- |
 | `center` (Requerido) | String | Coordenadas centrales del mapa como `longitude, latitude`.                                              |
 | `zoom` (Requerido)   | String | Nivel de zoom del mapa.                                                                                |
-| `pitch`             | String | Ángulo de la vista del mapa. `0` es recto hacia abajo y `60` es muy inclinado.                               |
+| `inclinacion`             | String | Ángulo de la vista del mapa. `0` es recto hacia abajo y `60` es muy inclinado.                               |
 | `bearing`           | String | Grados de rotación en sentido horario desde el norte (`0`). Los valores negativos representan rotación en sentido antihorario. |
 | `speed`             | String | Velocidad de la animación de vuelo (flyTo).                                                   |
 | `curve`             | String | Factor de curva para la animación de vuelo (flyTo).                                                     |
@@ -259,7 +259,7 @@ Esto garantizará que el mapa se muestre correctamente al cargar la página de l
 
 ## Despliegue
 
-Aloja los archivos `index.html` y `config.js` en el mismo directorio, en una ubicación accesible desde la web. Si no sabes por dónde empezar, consulta GitHub Pages o Netlify.
+Aloja los archivos `index.html`, `estilo.css`, `script.js`, y `config.js` en el mismo directorio, en una ubicación accesible desde la web. Si no sabes por dónde empezar, consulta GitHub Pages o Netlify.
 
 ## Hecho con
 

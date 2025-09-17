@@ -1,7 +1,7 @@
 var config = {
     // style: 'mapbox://styles/mapbox/streets-v12',
     // deja comentado para usar el estilo estándar de Mapbox
-    tokenDeAcceso: 'pk.eyJ1IjoiYW5hdHRvbGFpIiwiYSI6InR5R3U4MmsifQ.rM6ZPt6QHPuMGAAOHFM4RQ', // Reemplaza con tu propio token de acceso
+    tokenDeAcceso: `YOUR_MAPBOX_ACCESS_TOKEN`, // Reemplaza con tu propio token de acceso
     mostrarMarcadores: true,
     markerColor: '#3FB1CE',
     //projection: 'equirectangular',
@@ -67,7 +67,7 @@ var config = {
                 // lentamente y se aleje casi totalmente antes
                 // de hacer un paneo.
                 //speed: 2, // hace el vuelo lento
-                //curve: 1, // cambia la velocidad a la que se aleja
+                //curve: 3, // cambia qué tanto se aleja al hacer zoom out
             },
             animacionMapa: 'flyTo',
             rotarAnimacion: true,
