@@ -1,11 +1,11 @@
 var config = {
     // style: 'mapbox://styles/mapbox/streets-v12',
-    // leave commented to use Mapbox Standard Style
-    accessToken: 'YOUR_MAPBOX_ACCESS_TOKEN',
+    // deja comentado para usar el estilo estándar de Mapbox
+    accessToken: 'pk.eyJ1IjoiYW5hdHRvbGFpIiwiYSI6InR5R3U4MmsifQ.rM6ZPt6QHPuMGAAOHFM4RQ',
     showMarkers: true,
     markerColor: '#3FB1CE',
     //projection: 'equirectangular',
-    //Read more about available projections here
+    //Lee más acerca de las proyecciones disponibles en:
     //https://docs.mapbox.com/mapbox-gl-js/example/projections/
     inset: true,
     insetOptions: {
@@ -13,25 +13,25 @@ var config = {
     },
     insetPosition: 'bottom-right',
     theme: 'dark',
-    use3dTerrain: false, //set true for enabling 3D maps.
+    use3dTerrain: false, //true para mapas en 3d
     auto: false,
-    title: 'Your Title Goes Here',
-    subtitle: 'The Storytelling Template helps you create an awesome animated map story with ease.',
-    byline: 'By a I.M. Amapper',
-    footer: 'Source: source citations, etc. <br> Created using <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a> template.',
+    title: 'Título del mapa',
+    subtitle: 'Plantilla para Storytelling con mapa animado.',
+    byline: 'Por: Autor(a) de la historia',
+    footer: 'Fuente: citación de fuentes, etc. <br> Creado usando la plantilla de <a href="https://github.com/mapbox/storytelling" target="_blank">Mapbox Storytelling</a>.',
     chapters: [
         {
             id: 'slug-style-id',
             alignment: 'left',
             hidden: false,
-            title: 'San Francisco',
-            image: './assets/san-fran.jpeg',
-            description: 'The first chapter contains a title, image, and camera view for San Francisco, California. Update the chapter data to make it your own.',
+            title: 'Bogotá',
+            image: './assets/bogota.jpeg', // Enlace a primera imagen
+            description: 'Primer capítulo: Título, descripción e imagen del primer lugar.',
             location: {
-                center: [-122.418398, 37.759483],
-                zoom: 8.5,
-                pitch: 60,
-                bearing: 0
+                center: [-74.06930, 4.60476], // Coordenadas del primer lugar
+                zoom: 8.5, // Nivel de zoom
+                pitch: 60, // Inclinación de la cámara
+                bearing: 0 // Rotación de la cámara
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
@@ -54,11 +54,11 @@ var config = {
             id: 'second-identifier',
             alignment: 'right',
             hidden: false,
-            title: 'Washington, D.C.',
+            title: 'Washington, D.C.', // Título del segundo lugar
             image: './assets/washington-dc.jpg',
             description: 'The second chapter flies to Washington, D.C., updates the camera pitch, and slowly rotates. <br>  <br> Washington, D.C., the capital of the United States, is a vibrant city known for its iconic landmarks, including the White House, the U.S. Capitol, and the Washington Monument. It serves as the political heart of the nation and a center for history, culture, and international diplomacy.',
             location: {
-                center: [-77.020636, 38.886900],
+                center: [-77.020636, 38.886900], // Coordenadas del segundo lugar
                 zoom: 8.5,
                 pitch: 60,
                 bearing: -43.2,
@@ -100,7 +100,7 @@ var config = {
             hidden: false,
             title: 'Buenos Aires',
             image: './assets/buenos-aires.jpg',
-            description: 'Buenos Aires, the capital of Argentina, is a dynamic city known for its European-inspired architecture, vibrant tango culture, and rich culinary scene. Often called the "Paris of South America," it blends historic charm with modern energy.  You can add as many chapters as you need, just copy the JSON data and make changes.',
+            description: 'En Buenos Aires, la capital argentina...',
             location: {
                 center: [-58.54195, -34.71600],
                 zoom: 4,

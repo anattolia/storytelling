@@ -1,5 +1,5 @@
-# Code of conduct
+# Código de conducta
 
-Everyone is invited to participate in Mapbox’s open source projects and public discussions: we want to create a welcoming and friendly environment. Harassment of participants or other unethical and unprofessional behavior will not be tolerated in our spaces. The [Contributor Covenant](http://contributor-covenant.org) applies to all projects under the Mapbox organization and we ask that you please read [the full text](http://contributor-covenant.org/version/1/2/0/).
+Todxs están invitados a participar en los proyectos de código abierto y los debates públicos de Mapbox: queremos crear un ambiente acogedor y amigable. No se tolerará el acoso a los participantes ni ningún otro comportamiento poco ético o profesional en nuestros espacios. El [Pacto del Colaborador](http://contributor-covenant.org) se aplica a todos los proyectos de Mapbox y les pedimos que lean [el texto completo](http://contributor-covenant.org/version/1/2/0/).
 
-You can learn more about our open source philosophy on [mapbox.com](https://www.mapbox.com/about/open/).
+Puedes obtener más información sobre nuestra filosofía de código abierto en [mapbox.com](https://www.mapbox.com/about/open/).

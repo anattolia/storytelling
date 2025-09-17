@@ -1,79 +1,76 @@
-- [Interactive Storytelling](#interactive-storytelling)
-  - [Live Demo](#live-demo)
-  - [Prerequisites](#prerequisites)
-  - [Getting Started](#getting-started)
-    - [Steps](#steps)
-    - [Generate Map Position](#generate-map-position)
-    - [Configuration File and Layer Settings](#configuration-file-and-layer-settings)
-    - [Configuration Options](#configuration-options)
-    - [Mapbox Studio Style Configuration](#mapbox-studio-style-configuration)
-    - [Organization](#organization)
-  - [Deployment](#deployment)
-  - [Built With](#built-with)
-  - [Authors](#authors)
-  - [License](#license)
-  - [Acknowledgments](#acknowledgments)
+- [Storytelling Interactivo](#storytelling-interactivo)
+  - [Demo](#demo)
+  - [Pre requisitos](#pre-requisitos)
+  - [Comenzando](#comenzando)
+    - [Generar posición del mapa](#generar-posición-del-mapa)
+    - [Archivo de configuración y configuración de capa](#archivo-de-configuración-y-configuración-de-capa)
+    - [Opciones de configuración](#opciones-de-configuración)
+    - [Configuración de estilo de Mapbox Studio](#mapbox-studio-style-configuration)
+    - [Organización](#organización)
+  - [Despliegue](#despliegue)
+  - [Hecho con](#hecho-con)
+  - [Autores](#autores)
+  - [Licencia](#licencia)
+  - [Agradecimientos](#agradecimientos)
 
 ![3D mountains in Colorado](assets/co14ersstory.gif)
 
-# Interactive Storytelling
-Some stories are best told with a map. Data journalists covering changing conditions in a population's demographics, the environment, an international conflict, or telling a simple travel story frequently provide geographic context in their graphics.
+# Storytelling Interactivo
+Esta plantilla está diseñada para facilitar la creación de una narrativa cartográfica. La entrada principal es una historia dividida en secciones (`capítulos`), cada una vinculada a una vista específica del mapa.
 
-This template is designed to accelerate building out a "storytelling" map story. The primary input is a story broken into sections (`chapters`), each hooked to a particular view of a map.
+Opcionalmente, puedes introducir un estilo de Mapbox personalizado con capas diseñadas en Mapbox Studio y alternar la opacidad de la capa.
 
-Optionally, you can input a custom Mapbox Style with layers styled in Studio and toggle the layer's opacity.
+El código está compuesto por un archivo HTML, un archivo de estilo CSS y un archivo de JavaScript. Estos se pueden alojar en cualquier ubicación web accesible, sin necesidad de código ni infraestructura adicional. Incrustar el resultado como un iFrame en otra página no funcionará correctamente. La interfaz con desplazamiento requiere la página completa.
 
-The output is an HTML and JavaScript file. These outputs can be hosted on any web-accessible location, with no extra code or infrastructure required. Note that embedding the output as an iFrame in another page will not work as expected. The scroll-driven interface requires the full page.
+## Demo
 
-## Live Demo
+Puedes ver un ejemplo de esta plantilla en [https://labs.mapbox.com/storytelling/](https://labs.mapbox.com/storytelling/)
 
-You can view a live demo of this storytelling framework at [https://labs.mapbox.com/storytelling/](https://labs.mapbox.com/storytelling/)
+## Pre requisitos
+Esta plantilla está diseñada para contar historias digitales con mapas y datos. Para agregar capas del mapa personalizadas, necesitarás alguna familiaridad con [Mapbox Studio](https://studio.mapbox.com).
 
-## Prerequisites
-This template is for data journalists and digital storytellers of any kind. If you are planning to include some custom map layers, you will need some familiarity with [Mapbox Studio](https://studio.mapbox.com).
+Para configurar y publicar la historia necesitarás:
+- Un [token de acceso](https://docs.mapbox.com/help/glossary/access-token) de Mapbox. Puedes crear una cuenta gratuita en: [mapbox.com](https://www.mapbox.com/signup/).
 
-To configure and publish a story, you will need:
-- A Mapbox [access token](https://docs.mapbox.com/help/glossary/access-token). Sign up for a free account at [mapbox.com](https://www.mapbox.com/signup/) to get one.
+- Un editor de código como Visual Studio Code. También puedes editar el código usando CodeSpaces de GitHub.
 
-- A text editor. Visual Studio Code is a fine choice.
+- Un lugar donde publicar tu web. Cualquier servicio que aloje páginas estáticas sirve. [Github Pages](https://pages.github.com/) es una buena opción gratuita.
 
-- A place to publish your work. Any service that hosts static files that can be accessed with a browser will do. [Github Pages](https://pages.github.com/) is a good free option.
+- Una historia.
 
-- A story. This is unquestionably the hardest part. The best stories for this template will have sections that benefit from a map.
+- Atención al detalle. El archivo de configuración requiere sintaxis y puntuación específicas. Las llaves, corchetes, comas y comillas son importantes. Consulta la plantilla `config.js.template` para obtener orientación. Se recomienda tener cierta familiaridad con [JSON]('https://www.copterlabs.com/json-what-it-is-how-it-works-how-to-use-it/').
 
-- Attention to detail. The configuration file does require specific syntax and punctuation. Braces, brackets, commas, and quotes are important. Follow the `config.js.template` for guidance. Some familiarity with [JSON]('https://www.copterlabs.com/json-what-it-is-how-it-works-how-to-use-it/') is recommended.
+- Opcionalmente, algunos datos espaciales en tu mapa de Mapbox. La plantilla permite incluir nombres de capas para mostrar y ocultar los datos a medida que se hace la transición entre las secciones de la historia. Puedes resaltar un barrio o mostrar datos satelitales de dos momentos diferentes.
 
-- Optionally, some spatial data in your Mapbox map. The template has options to include layer names to show and hide the data as the story sections transition. You may want to highlight a neighborhood, or show satellite data from two different times.
+La plantilla no depende de ningún framework CSS, fuentes ni imágenes en particular. Hay algunos estilos básicos en el archivo de CSS que se pueden modificar, así que siéntete libre de adaptarlos y añadirlos para que se ajusten a la marca de tu sitio y tu historia.
 
-The template does not rely on any particular CSS framework, fonts, or images. There are some basic styles in the `head` of the HTML file that can be changed, so feel free to adapt and add to these to match your site and story brand.
+![captura de pantalla de la historia de ejemplo](assets/glacierdemo.gif)
 
-![example story screen capture](assets/glacierdemo.gif)
+## Ejecutar el archivo index.html en un servidor de desarrollo
 
-## Run the index.html file in a development server.
+Clona este repositorio y ábrelo en Visual Studio Code o con CodeSpaces.
 
-Clone this repository, and open its directory in Visual Studio Code.
+### 1: Instala la extensión Live Server
+Para facilitar la previsualización de los cambios en tiempo real, puede instalar la extensión Live Server en Visual Studio Code. (Esto servirá el archivo `index.html` desde un servidor web local, evitando errores CORS y otros problemas que pueden surgir al abrir un archivo HTML sin usar un servidor de desarrollo):
+1. Vaya a la pestaña **Extensiones** en Visual Studio Code (el icono cuadrado en la barra lateral).
+2. Busque **Live Server** y haga clic en **Instalar**.
+3. Una vez instalado, podrá iniciar un servidor en vivo para previsualizar el archivo HTML.
 
-### 1: Install the Live Server Extension
-To make it easier to preview changes in real-time, you can install the Live Server extension in Visual Studio Code.  (This will serve the `index.html` from a local webserver, preventing CORS errors and other issues that can arise from opening an HTML file without using a development server):
-1. Go to the **Extensions** tab in Visual Studio Code (the square icon on the sidebar).
-2. Search for **Live Server** and click **Install**.
-3. Once installed, you’ll be able to start a live server to preview the HTML file.
+### 2: Ejecuta el archivo HTML en tu navegador
+1. Con el archivo `index.html` abierto, dale click derecho en la ventana del editor y selecciona **Open with Live Server**. O haz click en el botón "Go Live" en la parte inferior derecha del editor. 
+2. Se abrirá tu navegador por defecto, mostrando el mapa de storytelling usando la configuración por defecto que se encuentra en `config.js`. Si no haz agregado tu token de acceso de Mapbox, el mapa no se mostrará. Sigue los siguientes pasos para actualizad la configuración de `config.js`.
 
-### 2: Run the HTML File in Your Browser
-1. With the `index.html` file open, right-click in the editor window and select **Open with Live Server**.
-2. Your default browser will open, displaying the storytelling map using the default configuration in `config.js`. Because you have not yet added your Mapbox Access Token, the map will not display. Follow the steps below to update `config.js`.
+#### Personalizar tu configuración
 
-#### Customize your configuration
+Abre `config.js` y edita lo siguiente para personalizar el mapa de tu historia.
 
-Open `config.js` and make the following edits to customize the map to tell your story.
+1. **Agrega un token de acceso de Mapbox.** Reemplaza `YOUR_MAPBOX_ACCESS_TOKEN` con un token de acceso de tu cuenta [account.mapbox.com](htps://account.mapbox.com). Una buena práctica es [crear un token diferente](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/#creating-and-managing-access-tokens) para cada mapa para poder hacer seguimiento del tráfico de tus distintos mapas. 
 
-1. **Add a Mapbox access token.** Replace `YOUR_MAPBOX_ACCESS_TOKEN` with an access token from your account at [account.mapbox.com](htps://account.mapbox.com). A good practice is to [create a separate](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/#creating-and-managing-access-tokens) token per map to be able to track traffic to your different maps. 
+2. **Selecciona el estilo del mapa** que quieres usar (por defecto es el Mapbox Standard, pero puedes encontrar más estilos [en la página de documentación de nuestra API de Estilos](https://docs.mapbox.com/api/maps/styles/#classic-mapbox-styles), o crear tu propio estilo en [Mapbox Studio](https://studio.mapbox.com)).
 
-2. **Select the map style** you want to use (the default is Mapbox Standard, but you can find more styles [in our Styles API documentation page](https://docs.mapbox.com/api/maps/styles/#classic-mapbox-styles), or create your own style in [Mapbox Studio](https://studio.mapbox.com)).
+3. **Elige si mostrar o no un marcador** en el centro de cada locación en el mapa. Si estás mostrando marcadores, puedes configurar el color usando la propiedad `markerColor`. El color por defecto es azul.
 
-3. **Choose whether or not to display a marker** at the center of each map location. If you are displaying markers, you can set the color using the `markerColor` property. The default color is light blue.
-
-4. **Choose a theme for the story text**. There are `light` and `dark` options.
+4. **Elige un tema para el texto de la historia**. Puede ser `light` o `dark`.
 
 ```
 {
@@ -93,7 +90,7 @@ Open `config.js` and make the following edits to customize the map to tell your 
 {
 ```
 
-6. **Add as many `chapters` in your template as needed.** You'll need a `,` between each section, but no comma at the end. Here is what a `chapter` looks like:
+6. **Agrega tantos capítulos (`chapters`) en tu plantilla como necesites.** Vas a necesitar una `,` entre cada sección, pero no una coma al final. Así se ve un `capítulo`:
 
 ```
 {
@@ -117,25 +114,25 @@ Open `config.js` and make the following edits to customize the map to tell your 
 },
 ```
 
-7. **Fill out your sections as needed.**  Give each section a unique name in the section `id` property. This will become the HTML `div` `id`, so avoid spaces in the name. The `title`, `description` properties are optional. The `description` supports HTML tags. If you have an image that goes with that section of the story, add the path to the image in the `image` property.
+7. **Llena las secciones según lo que necesites.**  Da un nombre único a cada sección con la propiedad `id`. Este se convertirá en el `div` `id` HTML, así que evita espacios en el nombre. Las propiedades `title` y `description` son opcionales. `description` admite etiquetas HTML. Si tienes una imagen que corresponde a esa sección de la historia, agrega la ruta a la imagen en `image`.
 
-8. For `location`, you can use the `helper.html` file to help you determine the map's position. This tool prints the location settings of the map on the screen in a format ready for copy/paste into the template. Optionally, you can change the style in this file to your [custom style](https://docs.mapbox.com/mapbox-gl-js/example/custom-style-id/).
+8. Para la `ubicación`, puedes usar el archivo `helper.html` para determinar la posición del mapa. Esta herramienta imprime la configuración de ubicación del mapa en pantalla en un formato listo para copiar y pegar en la plantilla. Opcionalmente, puedes cambiar el estilo de este archivo a su [estilo personalizado](https://docs.mapbox.com/mapbox-gl-js/example/custom-style-id/).  También puedes buscar las coordenadas en GoogleMaps u otra página de mapas.
 
-9. Repeat until you have the location entered for each of your sections.
+9. Repite hasta que hayas puesto las coordenadas de cada una de tus secciones.
 
-10. Open `index.html` in a browser, and scroll. Voila!
+10. Abre `index.html` en un navegador y haz scroll. Voila!
 
-11. There are more options available in `config.js`.  Refer to the documentation in this README and experiment with the different values as you craft your story. If you are familiar with HTML, CSS, and JavaScript, you can customize every aspect of the storytelling map, well beyond the options we've provided in this template.  Have fun, and please share your work!
+11. Hay más opciones disponibles en `config.js`. Consulta la documentación de este archivo README y experimenta con los diferentes valores a medida que creas tu historia. Si conoces HTML, CSS y JavaScript, puedes personalizar cada aspecto del mapa narrativo, mucho más allá de las opciones que ofrecemos en esta plantilla. ¡Diviértete y comparte tu trabajo!
 
-#### Generate Map Position 
+#### Generar posición del mapa 
 
-Use the [Mapbox Location Helper](https://labs.mapbox.com/location-helper/) to search for locations and get the center, zoom, pitch, and bearing for use in your storytelling map.
+Usa la herramienta [Mapbox Location Helper](https://labs.mapbox.com/location-helper/) para buscar los lugares en el mapa y ubicar las coordenadas de su centro.
 
 ![location helper screen capture](assets/location-helper.gif)
 
-#### Configuration File and Layer Settings
+#### Archivo de configuración y configuración de capa
 
-Here is a sample configuration:
+Aquí hay un ejemplo de un archivo de configuración simple:
 
 ```
 var config = {
@@ -201,92 +198,94 @@ var config = {
     ]
 }
 ```
-#### Configuration Options
+#### Opciones de configuración
 
-| Option                   | Type   | Description                                                                                                                                                                                                        |
+| Opción                   | Tipo   | Descripción                                                                                                                                                                                                        |
 | ------------------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `style` (Required)       | String | This is the Mapbox style `url` to use for the app. It can be a standard style, or a custom style from your Mapbox account. Use a custom style if you want to include custom data or layers.                        |
-| `accessToken` (Required) | String | Your Mapbox access token.                                                                                                                                                                                          |
-| `showMarkers`            | String | Controls whether markers are shown at the centerpoint of each chapter. If `true`, the map will display a default blue, inverted-teardrop icon.                                                                     |
-| `markerColor`            | String | Accepts hexadecimal, RGB, and color names [compatible with CSS standards](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value). Overrides the default light blue marker color if `showMarkers` is `true`. |
-| `theme`                  | String | Two basic themes (light and dark) are available.                                                                                                                                                                   |
-| `use3dTerrain`           | String | Enables 3D terrain. (Optional)                                                                                                                                                                                     |
-| `inset`                  | String | Enables a globe minimap. (Optional)                                                                                                                                                                                |
-| `insetOptions`           | Object | [ `GlobeMiniMap` options](https://github.com/chriswhong/mapbox-gl-globe-minimap?tab=readme-ov-file#options)                                                                                                        |
-| `insetPosition`          | Srting | A string representing the position of the inset map on the map. Valid options are `top-left`, `top-right`, `bottom-left`, `bottom-right`.                                                                                                      |
-| `projection`             | String | Sets the Map object's [projection parameter](https://docs.mapbox.com/mapbox-gl-js/example/projections/) to create a map with a non-Mercator projection. (Optional)                                                 |
-| `auto`                   | String | Enables automatic advancement through the chapters. (Optional)                                                                                                                                                     |
-| `title`                  | String | The title of the overall story. (Optional)                                                                                                                                                                         |
-| `subtitle`               | String | A subtitle for the story. (Optional)                                                                                                                                                                               |
-| `byline`                 | String | Credit the author of the story. (Optional)                                                                                                                                                                         |
-| `footer`                 | String | Citations, credits, etc., displayed at the bottom of the story.                                                                                                                                                    |
-| `chapters` (Required)    | String | Contains all of the story content and map controls for each section of the story. _Array of objects_                                                                                                               |
+| `style` (Requerido)       | String | Esta es la `url` del estilo de Mapbox que se usará en la aplicación. Puede ser un estilo estándar o uno personalizado de tu cuenta de Mapbox. Usa un estilo personalizado si quieres incluir datos o capas personalizados.                        |
+| `accessToken` (Requerido) | String | Tu token de acceso de Mapbox.                                                                                                                                                           |
+| `showMarkers`            | String | Controla si se muestran marcadores en el punto central de cada capítulo. Si es "true", el mapa mostrará un icono azul predeterminado en forma de lágrima invertida.                    |
+| `markerColor`            | String | Acepta hexadecimal, RGB, y nombres de colores [compatible con CSS estándar](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value). Sobreescribe el azul claro por defecto si el marcador de color  `showMarkers` es `true`. |
+| `theme`                  | String | Hay dos temas básicos disponibles (claro y oscuro).                                                                                                                                                                   |
+| `use3dTerrain`           | String | Habilita el terreno 3D.(Opcional)                                                                                                                                                                                     |
+| `inset`                  | String | Habilita un minimapa del globo.(Opcional)                                                                                                                                                                                |
+| `insetOptions`           | Objeto | [opciones del `GlobeMiniMap`](https://github.com/chriswhong/mapbox-gl-globe-minimap?tab=readme-ov-file#options)                                                                                                        |
+| `insetPosition`          | String |Una cadena que representa la posición del mapa insertado en el mapa. Las opciones válidas son: `top-left`, `top-right`, `bottom-left`, `bottom-right`.                                                                                                      |
+| `projection`             | String | Configura el [parámetro proyección](https://docs.mapbox.com/mapbox-gl-js/example/projections/) del objeto Mapa para crear un mapa con una proyección que no sea Mercator.(Opcional)                                                 |
+| `auto`                   | String | Permite el avance automático a través de los capítulos. (Opcional)                                                                                                                                                     |
+| `title`                  | String | El título general de la historia.(Opcional)                                                                                                                                                                         |
+| `subtitle`               | String | Un subtítulo para la historia. (Opcional)                                                                                                                                                                               |
+| `byline`                 | String | Créditos del(a) autor(a) de la historia. (Opcional)                                                                                                                                                                         |
+| `footer`                 | String | Citas, créditos, etc., se muestran al final de la historia en la parte inferior.                                                                                                                                               |
+| `chapters` (Requerido)    | String | Contiene todos los contenidos de la historia y los controles del mapa para cada sección. _Array de objectos_                                                                                                               |
 
 ---
 
-#### Chapters Options
+#### Opciones de los capítulos
 
-| Option                 | Type   | Description                                                                                                                                                                               |
+| Opción                 | Tipo   | Descripción                                                                                                                                                                               |
 | ---------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id` (Required)        | String | A slug-style ID for the chapter. Used by the app's JavaScript and assigned as an HTML `id` for the `div` containing the story. Best practice: use kebab-case, e.g., `my-story-chapter-1`. |
-| `alignment` (Required) | String | Defines where the story text should appear over the map. Options: `center`, `left`, `right`, `full`. Defaults to `center` for browser windows less than 750 pixels wide.                  |
-| `hidden`               | String | Sets the visibility of the chapter to `hidden` when `true`. The chapter will still trigger a map and layer transition.                                                                    |
-| `title`                | String | Title of the section, displayed in an `h3` element.                                                                                                                                       |
-| `image`                | String | Path to an image to display in this section.                                                                                                                                              |
-| `description`          | String | Main story content for the section. Aligned with what the reader sees on the map. Supports HTML for images, links, etc.                                                                   |
-| `location` (Required)  | String | Details about the map display and camera view (e.g., center, zoom, pitch, bearing).                                                                                                       |
-| `mapAnimation`         | String | Defines the [animation type](https://docs.mapbox.com/mapbox-gl-js/api/#map#jumpto) for transitions. Options: `flyTo`, `easeTo`, `jumpTo`. Defaults to `flyTo`.                            |
-| `rotateAnimation`      | String | Starts a slow rotation animation at the end of the map transition when `true`. Rotates 90 degrees over 24 seconds.                                                                        |
-| `callback`             | String | Name of a JavaScript function to execute custom code for the chapter, e.g., turning a legend on/off, adding API data, or displaying an interactive graph.                                 |
-| `onChapterEnter`       | String | Layers to be displayed/hidden/muted when the section becomes active. _Array of objects_ (e.g., layer name, opacity, duration).                                                            |
-| `onChapterExit`        | String | Same as `onChapterEnter`, triggered when the section becomes inactive. _Array of objects_.                                                                                                |
+| `id` (Requerido)        | String | Un ID de estilo slug para el capítulo. Lo usa el JavaScript de la aplicación y se asigna como un `id` HTML para el `div` que contiene la historia. Práctica recomendada: usar kebab-case, por ejemplo, `mi-historia-capítulo-1`. |
+| `alignment` (Requerido) | String | Define dónde debe aparecer el texto de la historia en el mapa. Opciones: `center`, `left`, `right`, `full`. El valor predeterminado es `center` para ventanas de navegador de menos de 750 píxeles de ancho.               |
+| `hidden`               | String | Establece la visibilidad del capítulo como oculta (`hidden`) cuando es verdadera (`true`). El capítulo seguirá activando una transición de mapa y capa.                   |
+| `title`                | String | Título de la sección, mostrado en un elemento de tipo`h3`.                                                                                                                                       |
+| `image`                | String | URL de la imagen a mostrarse en esta sección.                                                                                                                                              |
+| `description`          | String | Contenido principal de la sección. Coincide con lo que el lector ve en el mapa. Compatible con HTML para imágenes, enlaces, etc.                                                                   |
+| `location` (Requerido)  | String | Detalles sobre la visualización del mapa y la vista de la cámara (por ejemplo, centro, zoom, inclinación, rumbo).                                                                                                   |
+| `mapAnimation`         | String | Define el [tipo de animación](https://docs.mapbox.com/mapbox-gl-js/api/#map#jumpto) para las transiciones. Opciones: `flyTo`, `easeTo`, `jumpTo`. Por defecto es `flyTo`.                            |
+| `rotateAnimation`      | String | Inicia una animación de rotación lenta al final de la transición del mapa cuando es `true`. Gira 90 grados durante 24 segundos.                                                                  |
+| `callback`             | String |Nombre de una función de JavaScript para ejecutar código personalizado para el capítulo, por ejemplo, activar o desactivar una leyenda, agregar datos de API o mostrar un gráfico interactivo.                                 |
+| `onChapterEnter`       | String | Capas que se mostrarán/ocultarán/silenciarán cuando la sección se active. _Array de objectos_ (ej., nombre de la capa, opacidad, duración).                                                            |
+| `onChapterExit`        | String | Igual que `onChapterEnter`, Se activa cuando la sección se vuelve inactiva. _Array de objectos_.                                                                                                |
 
 ---
 
-#### Location Details
+#### Detalles de localización
 
-| Option              | Type   | Description                                                                                           |
+| Opción              | Tipo   | Descripción                                                                                           |
 | ------------------- | ------ | ----------------------------------------------------------------------------------------------------- |
-| `center` (Required) | String | Center coordinates of the map, as `longitude, latitude`.                                              |
-| `zoom` (Required)   | String | Zoom level of the map.                                                                                |
-| `pitch`             | String | Angle of the map view. `0` is straight down, and `60` is highly tilted.                               |
-| `bearing`           | String | Degrees of rotation clockwise from North (`0`). Negative values represent counter-clockwise rotation. |
-| `speed`             | String | Speed of the flyTo animation.                                                                         |
-| `curve`             | String | Curve factor for the flyTo animation.                                                                 |
+| `center` (Requerido) | String | Coordenadas centrales del mapa como `longitude, latitude`.                                              |
+| `zoom` (Requerido)   | String | Nivel de zoom del mapa.                                                                                |
+| `pitch`             | String | Ángulo de la vista del mapa. `0` es recto hacia abajo y `60` es muy inclinado.                               |
+| `bearing`           | String | Grados de rotación en sentido horario desde el norte (`0`). Los valores negativos representan rotación en sentido antihorario. |
+| `speed`             | String | Velocidad de la animación de vuelo (flyTo).                                                   |
+| `curve`             | String | Factor de curva para la animación de vuelo (flyTo).                                                     |
 
-#### Layer Configuration in your Mapbox Studio Style
+#### Configuración de capa en tu estilo de Mapbox Studio
 
-Add and style each custom layer in your Studio style. Before the final publish, set any layers's style to be hidden with `0` opacity. **Do not hide the layer**. For example, if you have a `circle` layer, makes sure the `color-opacity` and/or the `stroke-opacity` is set to 0.
+Añade y estiliza cada capa personalizada en tu estilo del Mapbox Studio. Antes de la publicación final, configura el estilo de las capas para que se oculten con una opacidad de 0. **No ocultes la capa**. Por ejemplo, si tienes una capa de `círculo`, asegúrate de que la opacidad del color (`color-opacity`) o la opacidad del trazo (`stroke-opacity`) estén configuradas en 0.
 
-This will ensure that the map appears correctly when the story page loads. To adjust the opacity of the layers as the reader scrolls through the story, use the `onChapterEnter` or `onChapterExit` configuration options to set your desired opacity for the layer.
+Esto garantizará que el mapa se muestre correctamente al cargar la página de la historia. Para ajustar la opacidad de las capas a medida que el lector se desplaza por la historia, utiliza las opciones de configuración `onChapterEnter` u `onChapterExit` para configurar la opacidad deseada para la capa.
 
-## Deployment
+## Despliegue
 
-Host the `index.html` and `config.js` files in the same directory in a web-accessible location. If you don't know where to start, look into GitHub Pages or Netlify.
+Aloja los archivos `index.html` y `config.js` en el mismo directorio, en una ubicación accesible desde la web. Si no sabes por dónde empezar, consulta GitHub Pages o Netlify.
 
-## Built With
+## Hecho con
 
 - Mapbox GL JS
 - Scrollama.js
 
-## Authors
+## Autores
 
-John Branigan on the Mapbox [Solutions Architecture Team](mailto:solutions_architecture@mapbox.com)
+John Branigan del [Equipo de Soluciones de Arquitectura](mailto:solutions_architecture@mapbox.com) de Mapbox.
 
-## License
+Traducción al español y algunos cambios: Antonia Bu (@anattolia)
 
-BSD 3-Clause License
+## Licencia
 
-## Acknowledgments
+Licencia BSD 3-Clause
 
-* Lo Bénichou for the idea, support, and awesome feedback throughout the design and build process
-* Paige Moody and Lem Thornton for early testing and feedback
-* Chris Toomey for ushering this work through and keeping things on track
-* Journalists with stories that help us make sense of what goes around us
-* [Digital Democracy](https://www.digital-democracy.org/) and [Rudo Kemper](https://kunukumapping.com/) for [their fork](https://github.com/digidem/mapbox-storytelling-upgraded) that inspired many later features.
-* [Paul Franz](https://github.com/pkfranz) for developing customizations and providing feedback.
+## Agradecimientos
 
-## Notable Examples
+* Lo Bénichou por la idea, el apoyo y la increíble retroalimentación durante el proceso de diseño y desarrollo.
+* Paige Moody y Lem Thornton por las pruebas tempranas y la retroalimentación
+* Chris Toomey por impulsar este trabajo y mantener las cosas en marcha.
+* Lxs periodistas con historias que nos ayudan a dar sentido a lo que nos rodea.
+* [Digital Democracy](https://www.digital-democracy.org/) y [Rudo Kemper](https://kunukumapping.com/) por [su fork](https://github.com/digidem/mapbox-storytelling-upgraded) que inspiró muchas de las características posteriores.
+* [Paul Franz](https://github.com/pkfranz) por desarrollar personalizaciones y dar retroalimentación.
+
+## Ejemplos notables
 
 - [Connectivity Disparity Across Schools in Kazakhstan: UNICEF](https://unicef.github.io/mapbox_analysis/story/map)
 - [Saving the Nile: Aljazeera](https://interactive.aljazeera.com/aje/2020/saving-the-nile/index.html)
