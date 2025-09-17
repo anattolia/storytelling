@@ -40,49 +40,50 @@
 
         let header = document.createElement('div');
 
-        if (config.title) {
+        if (config.titulo) {
             let textoTitulo = document.createElement('h1');
-            textoTitulo.innerText = config.title;
+            textoTitulo.innerText = config.titulo;
             header.appendChild(textoTitulo);
         }
 
-        if (config.subtitle) {
+        if (config.subtitulo) {
             let textoSubtitulo = document.createElement('h2');
-            textoSubtitulo.innerText = config.subtitle;
+            textoSubtitulo.innerText = config.subtitulo;
             header.appendChild(textoSubtitulo);
         }
 
-        if (config.byline) {
-            let textoParrafo = document.createElement('p');
-            textoParrafo.innerText = config.byline;
-            header.appendChild(textoParrafo);
+        if (config.autor) {
+            let textoAutor = document.createElement('p');
+            textoAutor.innerText = config.autor;
+            header.appendChild(textoAutor);
         }
 
         if (header.innerText.length > 0) {
-            header.classList.add(config.theme);
+            header.classList.add(config.tema);
             header.setAttribute('id', 'header');
             historia.appendChild(header);
         }
 
-        config.chapters.forEach((record, idx) => {
+        // Configurar cada capítulo
+        config.capitulos.forEach((record, idx) => {
             let contenedor = document.createElement('div');
             let capitulo = document.createElement('div');
 
-            if (record.title) {
+            if (record.titulo) {
                 let titulo = document.createElement('h3');
-                titulo.innerText = record.title;
+                titulo.innerText = record.titulo;
                 capitulo.appendChild(titulo);
             }
 
-            if (record.image) {
+            if (record.imagen) {
                 let imagen = new Image();
-                imagen.src = record.image;
+                imagen.src = record.imagen;
                 capitulo.appendChild(imagen);
             }
 
-            if (record.description) {
+            if (record.descripcion) {
                 let historia = document.createElement('p');
-                historia.innerHTML = record.description;
+                historia.innerHTML = record.descripcion;
                 capitulo.appendChild(historia);
             }
 
@@ -92,10 +93,10 @@
                 contenedor.classList.add('active');
             }
 
-            capitulo.classList.add(config.theme);
+            capitulo.classList.add(config.tema);
             contenedor.appendChild(capitulo);
-            contenedor.classList.add(alineaciones[record.alignment] || 'centered');
-            if (record.hidden) {
+            contenedor.classList.add(alineaciones[record.alineacion] || 'centered');
+            if (record.oculto) {
                 contenedor.classList.add('hidden');
             }
             caracteristicas.appendChild(contenedor);
@@ -106,26 +107,26 @@
         let footer = document.createElement('div');
 
         if (config.footer) {
-            let footerText = document.createElement('p');
-            footerText.innerHTML = config.footer;
-            footer.appendChild(footerText);
+            let textoFooter = document.createElement('p');
+            textoFooter.innerHTML = config.footer;
+            footer.appendChild(textoFooter);
         }
 
         if (footer.innerText.length > 0) {
-            footer.classList.add(config.theme);
+            footer.classList.add(config.tema);
             footer.setAttribute('id', 'footer');
             historia.appendChild(footer);
         }
 
-        mapboxgl.accessToken = config.accessToken;
+        mapboxgl.accessToken = config.tokenDeAcceso;
 
         let map = new mapboxgl.Map({
             container: 'map',
             style: config.style,
-            center: config.chapters[0].location.center,
-            zoom: config.chapters[0].location.zoom,
-            bearing: config.chapters[0].location.bearing,
-            pitch: config.chapters[0].location.pitch,
+            center: config.capitulos[0].ubicacion.center,
+            zoom: config.capitulos[0].ubicacion.zoom,
+            bearing: config.capitulos[0].ubicacion.bearing,
+            pitch: config.capitulos[0].ubicacion.inclinacion,
             interactive: false,
             projection: config.projection
         });
@@ -138,9 +139,9 @@
             );
         }
 
-        if (config.showMarkers) {
+        if (config.mostrarMarcadores) {
             let marker = new mapboxgl.Marker({ color: config.markerColor });
-            marker.setLngLat(config.chapters[0].location.center).addTo(map);
+            marker.setLngLat(config.capitulos[0].ubicacion.center).addTo(map);
         }
 
         // instanciar el scrollama
@@ -148,7 +149,7 @@
 
 
         map.on("load", function () {
-            if (config.use3dTerrain) {
+            if (config.usarTerreno3d) {
                 map.addSource('mapbox-dem', {
                     'type': 'raster-dem',
                     'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
@@ -178,14 +179,14 @@
                     progress: true
                 })
                 .onStepEnter(async response => {
-                    let capituloActual = config.chapters.findIndex(chap => chap.id === response.element.id);
-                    let capitulo = config.chapters[capituloActual];
+                    let capituloActual = config.capitulos.findIndex(chap => chap.id === response.element.id);
+                    let capitulo = config.capitulos[capituloActual];
 
                     response.element.classList.add('active');
-                    map[capitulo.mapAnimation || 'flyTo'](capitulo.location);
+                    map[capitulo.mapAnimation || 'flyTo'](capitulo.ubicacion);
 
-                    if (config.showMarkers) {
-                        marker.setLngLat(capitulo.location.center);
+                    if (config.mostrarMarcadores) {
+                        marker.setLngLat(capitulo.ubicacion.center);
                     }
                     if (capitulo.onChapterEnter.length > 0) {
                         capitulo.onChapterEnter.forEach(setLayerOpacity);
@@ -193,7 +194,7 @@
                     if (capitulo.callback) {
                         window[capitulo.callback]();
                     }
-                    if (capitulo.rotateAnimation) {
+                    if (capitulo.rotarAnimacion) {
                         map.once('moveend', () => {
                             const numeroRotacion = map.getBearing();
                             map.rotateTo(numeroRotacion + 180, {
@@ -204,14 +205,14 @@
                         });
                     }
                     if (config.auto) {
-                        let capituloSiguiente = (capituloActual + 1) % config.chapters.length;
+                        let capituloSiguiente = (capituloActual + 1) % config.capitulos.length;
                         map.once('moveend', () => {
                             document.querySelectorAll('[data-scrollama-index="' + capituloSiguiente.toString() + '"]')[0].scrollIntoView();
                         });
                     }
                 })
                 .onStepExit(response => {
-                    let capitulo = config.chapters.find(chap => chap.id === response.element.id);
+                    let capitulo = config.capitulos.find(chap => chap.id === response.element.id);
                     response.element.classList.remove('active');
                     if (capitulo.onChapterExit.length > 0) {
                         capitulo.onChapterExit.forEach(setLayerOpacity);
